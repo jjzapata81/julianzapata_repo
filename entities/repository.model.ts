@@ -51,7 +51,7 @@ Repository.init({
         allowNull: false
     },
     status: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM("A", "I"),
         allowNull: false
     },
     createTime:{
