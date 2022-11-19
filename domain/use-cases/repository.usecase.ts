@@ -1,14 +1,13 @@
-import Tribe from '../entities/tribe.model';
+import Tribe from '../../infrastructure/db/entities/tribe.model';
 import RepositoryDto from '../models/repository.dto';
-import { getStates } from '../clients/http.client';
+import { getStates } from '../../infrastructure/clients/http.client';
 import { toRepositoryDto, toVerificationCode } from '../models/mappers/mappers';
 import { VerificationCode } from '../models/verification.code.model';
-import { TribeService } from '../services/tribe.services';
+import { findEnabledTribeById, findTribeById } from './tribe.usecase';
 
-const service = new TribeService();
 
 export const getById = async(id:string): Promise<RepositoryDto[]|undefined> => {
-    const resp = await service.findById(id);
+    const resp = await findTribeById(id);
     if(resp){
         return toRepositoryResponse(resp);
     }
@@ -16,7 +15,7 @@ export const getById = async(id:string): Promise<RepositoryDto[]|undefined> => {
 }
 
 export const getEnabledById = async(id:string): Promise<RepositoryDto[]|undefined> => {
-    const resp = await service.findEnabled(id);
+    const resp = await findEnabledTribeById(id);
     if(resp){
         return (await toRepositoryResponse(resp))?.filter(repo=> validateCoverage(repo.coverage, 0.75));
     }

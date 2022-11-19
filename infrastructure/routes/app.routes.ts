@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { getOrganizations, postOrganization, putOrganization, deleteOrganization } from '../controllers/organization.controller';
-import { getRepositories, getEnabledRepositories } from '../controllers/repository.controller';
-import { pathConstants } from '../models/constants';
-import { fieldValidator } from '../helpers/field-validator';
+import { getOrganizations, postOrganization, putOrganization, deleteOrganization } from '../entrypoints/controllers/organization.controller';
+import { getRepositories, getEnabledRepositories } from '../entrypoints/controllers/repository.controller';
+import { pathConstants } from '../../domain/models/constants';
+import { fieldValidator } from './helpers/field-validator';
 
 const router = Router();
 

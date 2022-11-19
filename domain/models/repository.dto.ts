@@ -1,5 +1,3 @@
-import StateEnum from "./state.enum";
-
 interface RepositoryDto {
     id: number;
     name: string;

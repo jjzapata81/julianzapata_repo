@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { findAll, update, create, deleteById } from '../services/organization.service';
+import { findAll, update, create, deleteById } from '../../../domain/use-cases/organization.usecase';
 
 export const getOrganizations = async (req: Request, res: Response) => {
     try {

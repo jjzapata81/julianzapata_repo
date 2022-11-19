@@ -1,7 +1,6 @@
-import { Organization } from '../entities/indexDB';
+import { Organization } from '../../infrastructure/db/entities/indexDB';
 
-
-const create = async (item: OrganizationDto): Promise<OrganizationDto> => {
+export const create = async (item: OrganizationDto): Promise<OrganizationDto> => {
     const organization = await Organization.create(item);
     return {
         id: organization.id,
@@ -10,7 +9,7 @@ const create = async (item: OrganizationDto): Promise<OrganizationDto> => {
     }
 }
 
-const findAll = async (): Promise<OrganizationDto[]> => {
+export const findAll = async (): Promise<OrganizationDto[]> => {
     const organizations = await Organization.findAll();
     return organizations.map(item => {
         const organizationDto: OrganizationDto = {
@@ -22,7 +21,7 @@ const findAll = async (): Promise<OrganizationDto[]> => {
     });
 }
 
-const update = async (id: string, item: OrganizationDto): Promise<OrganizationDto|undefined> => {
+export const update = async (id: string, item: OrganizationDto): Promise<OrganizationDto|undefined> => {
     const organization = await Organization.findByPk(id);
     if (organization) {
         await organization.update(item);
@@ -36,7 +35,7 @@ const update = async (id: string, item: OrganizationDto): Promise<OrganizationDt
     }
 }
 
-const deleteById = async (id: string): Promise<OrganizationDto|undefined> => {
+export const deleteById = async (id: string): Promise<OrganizationDto|undefined> => {
     const organization = await Organization.findByPk(id);
     if (organization) {
         await organization.destroy();
@@ -48,11 +47,4 @@ const deleteById = async (id: string): Promise<OrganizationDto|undefined> => {
     } else {
         return;
     }
-}
-
-export {
-    create,
-    findAll,
-    update,
-    deleteById
 }

@@ -1,7 +1,7 @@
 import express, {Application} from 'express';
 import cors from 'cors';
-import routes from './routes/app.routes';
-import { pathConstants } from './models/constants';
+import routes from '../routes/app.routes';
+import { pathConstants } from '../../domain/models/constants';
 
 class Server {
 

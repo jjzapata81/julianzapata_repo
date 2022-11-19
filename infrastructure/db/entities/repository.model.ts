@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize';
+import StateEnum from '../../../domain/models/state.enum';
 import { db } from '../database.config';
-import StateEnum from '../models/state.enum';
 import Metric from './metrics.model';
 
 interface RepositoryAttr {

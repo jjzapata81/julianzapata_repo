@@ -1,4 +1,4 @@
-import Repository from "../../entities/repository.model"
+import Repository from "../../../infrastructure/db/entities/repository.model"
 import RepositoryDto from "../repository.dto"
 import { VerificationCode } from "../verification.code.model"
 
