@@ -1,6 +1,6 @@
 import Repository from "../../entities/repository.model"
-import Tribe from "../../entities/tribe.model"
 import RepositoryDto from "../repository.dto"
+import { VerificationCode } from "../verification.code.model"
 
 export const StateMapper = {
     E:"Habilitado",
