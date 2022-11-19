@@ -2,17 +2,15 @@ import Repository from "../../entities/repository.model"
 import RepositoryDto from "../repository.dto"
 import { VerificationCode } from "../verification.code.model"
 
-export const StateMapper = {
-    E:"Habilitado",
-    D:"Deshabilitado",
-    A:"Archivado"
-}
+let stateMap: Map<string, string> = new Map();
+stateMap.set("E", "Habilitado");
+stateMap.set("D", "Deshabilitado");
+stateMap.set("A", "Archivado");
 
-export const VerificationCodeMapper = {
-    '604':"Verificado",
-    '605':"En espera",
-    '606':"Aprobado"
-}
+let verificationCodeMap: Map<number, string> = new Map();
+verificationCodeMap.set(604,"Verificado");
+verificationCodeMap.set(605,"En espera");
+verificationCodeMap.set(606,"Aprobado");
 
 export const toRepositoryDto = (source:Repository): RepositoryDto => {
     return {
@@ -26,14 +24,14 @@ export const toRepositoryDto = (source:Repository): RepositoryDto => {
         vulnerabilities:source.metric.vulnerabilities,
         hotspots:source.metric.hotspot,
         verificationState: '',
-        state:StateMapper[source.state]
+        state:stateMap.get(source.state)||''
     }
 }
 
 export const toVerificationCode = (id:number, verificationCodes:VerificationCode[]):string =>{
     const verificationCode = verificationCodes.filter(item => item.id === Number(id))[0];
     if(verificationCode){
-        return VerificationCodeMapper[verificationCode.state];
+        return verificationCodeMap.get(verificationCode.state)||'N/A';
     }
     return 'N/A';
 }
