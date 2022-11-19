@@ -10,6 +10,7 @@ Tribe.belongsTo(Organization, {foreignKey:'id_organization'});
 Tribe.hasMany(Repository, {foreignKey:'id_tribe'});
 Repository.belongsTo(Tribe, {foreignKey:'id_tribe'});
 
+Metric.belongsTo(Repository, {foreignKey:'id_repository'});
 Repository.belongsTo(Metric, {foreignKey:'id_repository'});
 
 

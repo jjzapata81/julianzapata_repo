@@ -1,5 +1,17 @@
+import StateEnum from "./state.enum";
+
 interface RepositoryDto {
     id: number;
     name: string;
-    status: number;
+    tribe: string;
+    organization: string;
+    coverage: string;
+    codeSmells: number;
+    bugs: number;
+    vulnerabilities: number;
+    hotspots: number;
+    verificationState: string;
+    state: string;
 }
+
+export default RepositoryDto;

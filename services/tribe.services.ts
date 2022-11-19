@@ -1,5 +1,5 @@
 import { where } from 'sequelize';
-import { Tribe, Repository, Organization } from '../entities/indexDB';
+import { Tribe, Repository, Organization, Metric } from '../entities/indexDB';
 
 export class TribeService {
     constructor(){
@@ -8,7 +8,22 @@ export class TribeService {
     async findById(id:any){
         const response = await Tribe.findByPk(id, {
             include:
-                [Organization,Repository]
+                [
+                    {
+                        model:Organization,
+                        attributes:["name"]
+                    },
+                    {
+                        model: Repository,
+                        attributes:["id","name", "state", "status", "createTime"],
+                        include:[
+                            {
+                                model:Metric,
+                                attributes:["coverage", "bugs", "vulnerabilities", "hotspot", "codeSmells"],
+                            }
+                        ]
+                    }
+                ]
             
         });
         return response;
