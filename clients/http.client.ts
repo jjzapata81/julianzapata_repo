@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { RepoVerification } from '../models/verification.code.model';
+import { RepoVerification, VerificationCode } from '../models/verification.code.model';
 
-export const getStates = async():Promise<RepoVerification> => {
-    const response = await axios.get(process.env.URL_MOCK||'');
-    return response.data;
+export const getStates = async():Promise<VerificationCode[]> => {
+    return axios.get(process.env.URL_MOCK||'').then(response=>{
+        const resp:RepoVerification = response.data;
+        return resp.repositories;
+    });
 }
