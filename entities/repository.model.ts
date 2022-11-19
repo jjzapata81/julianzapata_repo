@@ -1,11 +1,13 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { db } from '../database.config';
+import StateEnum from '../models/state.enum';
+import Metric from './metrics.model';
 
 interface RepositoryAttr {
     id: number;
     idTribe: number;
     name: string;
-    state: string;
+    state: StateEnum;
     status: string;
     createTime: Date;
     createdAt?: Date;
@@ -20,9 +22,10 @@ class Repository extends Model<RepositoryAttr, RepositoryInput> implements Repos
     id!: number;
     idTribe!: number;
     name!: string;
-    state!: string;
+    state!: StateEnum;
     status!: string;
     createTime!: Date;
+    metric!:Metric;
     readonly createdAt!: Date;
     readonly updatedAt!: Date;
     readonly deletedAt!: Date;
@@ -44,7 +47,7 @@ Repository.init({
         allowNull: false
     },
     state: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(StateEnum.A, StateEnum.D, StateEnum.E),
         allowNull: false
     },
     status: {

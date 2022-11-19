@@ -1,5 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { db } from '../database.config';
+import Organization from './organization.model';
+import Repository from './repository.model';
 
 interface TribeAttr {
     id: number;
@@ -19,6 +21,8 @@ class Tribe extends Model<TribeAttr, TribeInput> implements TribeAttr {
     idOrganization!: number;
     name!: string;
     status!: number;
+    organization!: Organization;
+    repositories!: Repository[];
     readonly createdAt!: Date;
     readonly updatedAt!: Date;
     readonly deletedAt!: Date;
